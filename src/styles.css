@@ -1,0 +1,162 @@
+/* Stillpoint — dusk palette. Deep slate night, mist, and a single warm ember. */
+:root {
+  --night: #171f26;
+  --slate: #232e37;
+  --mist: #c8d4d8;
+  --fog: #8fa0a8;
+  --ember: #e0a458;
+  --moss: #7fa88f;
+  --danger: #d98a7e;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 70% -10%, #26333d 0%, var(--night) 60%);
+  color: var(--mist);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.shell { max-width: 640px; margin: 0 auto; padding: 32px 20px 60px; }
+
+header h1 {
+  font-family: "Fraunces", serif;
+  font-weight: 560;
+  font-size: 2.2rem;
+  margin: 0;
+  color: #f0f4f5;
+  letter-spacing: -0.01em;
+}
+.tagline { margin: 2px 0 24px; color: var(--fog); font-style: italic; }
+
+nav { display: flex; gap: 8px; margin-bottom: 24px; }
+.tab {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #33414c;
+  border-radius: var(--radius);
+  color: var(--fog);
+  padding: 10px 6px;
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.tab small { font-size: 0.7rem; opacity: 0.8; }
+.tab.active { border-color: var(--ember); color: var(--ember); }
+.tab:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+
+.panel {
+  background: var(--slate);
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid #2c3944;
+}
+.panel h2 {
+  font-family: "Fraunces", serif;
+  font-weight: 560;
+  margin: 0 0 4px;
+  color: #eef2f3;
+}
+.panel h3 { font-size: 0.95rem; color: var(--ember); margin: 18px 0 6px; }
+.hint { color: var(--fog); margin: 0 0 14px; font-size: 0.9rem; }
+
+textarea {
+  width: 100%;
+  background: var(--night);
+  color: var(--mist);
+  border: 1px solid #33414c;
+  border-radius: 10px;
+  padding: 12px;
+  font: inherit;
+  resize: vertical;
+}
+textarea:focus-visible { outline: 2px solid var(--ember); outline-offset: 1px; }
+
+button {
+  margin-top: 12px;
+  background: var(--ember);
+  color: #241a0c;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: default; }
+button:focus-visible { outline: 2px solid var(--mist); outline-offset: 2px; }
+
+.error { color: var(--danger); font-size: 0.85rem; }
+.muted { color: var(--fog); font-size: 0.88rem; }
+.reframe {
+  border-left: 3px solid var(--moss);
+  padding: 8px 12px;
+  color: var(--moss);
+  background: rgba(127, 168, 143, 0.08);
+  border-radius: 0 8px 8px 0;
+}
+
+.plan ul { padding-left: 18px; margin: 6px 0; }
+.top3 { list-style: none; padding: 0; }
+.top3 li { margin-bottom: 10px; }
+.top3 label { display: flex; gap: 10px; cursor: pointer; }
+.top3 input { margin-top: 4px; accent-color: var(--ember); }
+.top3 em { display: block; color: var(--fog); font-size: 0.85rem; font-style: normal; }
+.top3 .done span { opacity: 0.45; text-decoration: line-through; }
+
+/* Breathing orb — the signature element */
+.breathe { text-align: center; }
+.orbWrap { position: relative; height: 220px; display: grid; place-items: center; margin: 12px 0; }
+.orb {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f2c17d, var(--ember) 55%, #9c6a2e);
+  box-shadow: 0 0 60px rgba(224, 164, 88, 0.35);
+  transition: transform 4s ease-in-out;
+}
+.orbText { position: absolute; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+.phaseLabel { font-family: "Fraunces", serif; color: #241a0c; font-size: 1.05rem; }
+.phaseCount { color: #241a0c; font-weight: 600; }
+
+/* Mood trend bars */
+.trend { margin-top: 20px; }
+.bars { display: flex; align-items: flex-end; gap: 5px; height: 90px; }
+.barCol { flex: 1; height: 100%; display: flex; align-items: flex-end; }
+.bar { width: 100%; background: linear-gradient(to top, var(--moss), var(--ember)); border-radius: 3px 3px 0 0; min-height: 4px; }
+
+footer { text-align: center; color: var(--fog); font-size: 0.78rem; margin-top: 28px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orb { transition-duration: 0.01s !important; }
+}
+@media (max-width: 480px) {
+  .shell { padding: 20px 12px 40px; }
+  nav { flex-wrap: wrap; }
+  .tab { min-width: 45%; }
+}
+
+/* Move feature */
+.pickRow { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 8px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  margin-top: 0;
+  background: var(--night);
+  color: var(--fog);
+  border: 1px solid #33414c;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 500;
+}
+.chip.active { border-color: var(--ember); color: var(--ember); }
+.blocks { list-style: none; padding: 0; }
+.blocks li { display: flex; gap: 10px; align-items: baseline; margin-bottom: 10px; }
+.toolTag {
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.05em; padding: 3px 8px; border-radius: 6px; white-space: nowrap;
+}
+.toolTag.rower { background: rgba(224,164,88,0.15); color: var(--ember); }
+.toolTag.pilates { background: rgba(127,168,143,0.15); color: var(--moss); }
